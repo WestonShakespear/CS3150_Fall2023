@@ -1,20 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <string.h>
 
-
+bool testForLeapYear(y);
 void printWeek(int startDay);
 int printFirstWeek(int firstDay);
 int printLastWeek(int startDay, int lastDay);
 int printMonth(int startDay, int totalDays);
-void printMonths(int startDay);
+void printMonths();
 int calculateFirstDay(int year);
 int getYear();
 
 
 int numberOfDaysInMonths[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
-char monthNames[12][9] = {     
+char monthNames[12][10] = {     
     "Janurary",
     "Feburary",
     "March",
@@ -32,25 +33,29 @@ char monthNames[12][9] = {
 
 void main() 
 {
-    printMonths
-    (
-        calculateFirstDay
-        (
-            getYear()
-        )
-    );
-
+    printMonths();
     getchar();
 }
 
 
 // Display all the months for a year
-void printMonths(int startDay)
+void printMonths()
 {
+    int year = getYear();
+    int startDay = calculateFirstDay(year);
+    printf("|*******  Calendar for %4d  *******|\n", year);
 
     for (int month = 1; month <= 12; month++)
     {
         int days = numberOfDaysInMonths[month - 1];
+
+        if (month == 2)
+        {
+            if (testForLeapYear(year))
+            {
+                days = 29;
+            }
+        }
 
         printf("|-------    %9s   ---------- |\n", monthNames[month - 1]);
         startDay = printMonth(startDay, days);
@@ -150,6 +155,29 @@ int getYear()
     return year;
 }
 
+
+
+
+bool testForLeapYear(y)
+{
+    return (
+        (y != 0) && 
+            (                // Don't count the first year
+                (
+                    ((y) % 4 == 0) &&   // The previous year was a leap
+                    ((y) % 100 != 0)    // But it wasn't the end of a century
+                ) ||
+                (
+                    ((y) % 4 == 0) &&   // The previous year was a leap
+                    ((y) % 400 == 0)    // and it is divisible by 400
+                )
+            )
+    );
+}
+
+
+
+
 // Figure out the first day of the year based on year 1 and leap year rules
 int calculateFirstDay(int year)
 {
@@ -160,20 +188,7 @@ int calculateFirstDay(int year)
     {
         int leap = 1;
 
-        if 
-            ( 
-                (y != 1) && 
-                (                // Don't count the first year
-                    (
-                        ((y - 1) % 4 == 0) &&   // The previous year was a leap
-                        ((y - 1) % 100 != 0)    // But it wasn't the end of a century
-                    ) ||
-                    (
-                        ((y - 1) % 4 == 0) &&   // The previous year was a leap
-                        ((y - 1) % 400 == 0)    // and it is divisible by 400
-                    )
-                )
-            )
+        if (testForLeapYear(y - 1))
         {
           day += 2;
         }
