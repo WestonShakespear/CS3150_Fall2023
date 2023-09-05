@@ -1,9 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 #include <string.h>
 
-bool testForLeapYear(y);
+int testForLeapYear(int y);
 void printWeek(int startDay);
 int printFirstWeek(int firstDay);
 int printLastWeek(int startDay, int lastDay);
@@ -43,7 +42,7 @@ void printMonths()
 {
     int year = getYear();
     int startDay = calculateFirstDay(year);
-    printf("|*******  Calendar for %4d  *******|\n", year);
+    printf("|*******  Calendar for %4d  ******|\n", year);
 
     for (int month = 1; month <= 12; month++)
     {
@@ -51,7 +50,7 @@ void printMonths()
 
         if (month == 2)
         {
-            if (testForLeapYear(year))
+            if (testForLeapYear(year) == 0)
             {
                 days = 29;
             }
@@ -158,9 +157,9 @@ int getYear()
 
 
 
-bool testForLeapYear(y)
+int testForLeapYear(int y)
 {
-    return (
+    if (
         (y != 0) && 
             (                // Don't count the first year
                 (
@@ -172,7 +171,11 @@ bool testForLeapYear(y)
                     ((y) % 400 == 0)    // and it is divisible by 400
                 )
             )
-    );
+    )
+    {
+        return 0;
+    }
+    return 1;
 }
 
 
@@ -188,7 +191,7 @@ int calculateFirstDay(int year)
     {
         int leap = 1;
 
-        if (testForLeapYear(y - 1))
+        if (testForLeapYear(y - 1) == 0)
         {
           day += 2;
         }
