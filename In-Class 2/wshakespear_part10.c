@@ -4,6 +4,7 @@
 
 #include <stdio.h>
 
+int fibonacci(int number);
 
 void main()
 {
@@ -23,7 +24,15 @@ void main()
         {
             continue;
         }
-        printf("The factorial of %4d is %4d\n", number, factorial(number));
+        printf("Fibonacci number %4d is %4d\n", number, fibonacci(number));
     }
 }
 
+int fibonacci(int number)
+{
+    if (number <= 2)
+    {
+        return 1;
+    }
+    return fibonacci(number - 1) + fibonacci(number - 2);
+}
