@@ -10,14 +10,20 @@ void reverse(char * string);
 
 void main()
 {
+    // Test 1
+    // Test string
     char name[] = "Weston Shakespear";
 
+    // Print, reverse, then print the reversed string
     printf("Reversing the string: '%s'\n", name);
     reverse(name);
     printf("The reversed string is: '%s'\n\n", name);
 
+    // Test 2
+    // Test String
     char name2[] = "I Love Computer Science";
 
+    // Print, reverse, then print the reversed string
     printf("Reversing the string: '%s'\n", name2);
     reverse(name2);
     printf("The reversed string is: '%s'\n", name2);
@@ -30,6 +36,7 @@ void reverse(char * string)
 
     // Allocate a copy + null terminator for a copy of the string
     char * string_copy = malloc(length + 1);
+    // Copy the string to the new memory
     strcpy(string_copy, string);
 
     // Loop and resassign
@@ -37,6 +44,6 @@ void reverse(char * string)
     {
         *(string + i) =  *((string_copy + length - 1) - i);
     }
+    // Free the allocated string_copy memory
     free(string_copy);
 }
-

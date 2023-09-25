@@ -15,13 +15,16 @@ void main()
     // Prompt the user for a valid size in an infinite loop
     while (1 == 1)
     {
+        // Get the array size from the user
         printf("How large should the array be? ");
         scanf("%d", &array_size);
 
+        // Exit the program if the size is zero
         if (array_size > 0)
         {
             break;
         }
+        // Re-prompt if the array size is unusable
         else
         {
             printf("Try entering a number larger than 0\n\n");
@@ -38,6 +41,8 @@ void main()
 
         printf("array[%4d]: ", index);
         scanf("%d", &value);
+        // Assign the value to the memory address of
+        // array_reference plus the index
         *(array_reference + index) = value;
     }
 
@@ -48,5 +53,6 @@ void main()
         printf("    Index %4d", index);
         printf("        Value: %4d\n", *(array_reference + index));
     }
+    // Free the memory that was manually allocated
     free(array_reference);
 }

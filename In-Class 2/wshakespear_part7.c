@@ -11,12 +11,15 @@ void transpose_matrix(int * array, int rows, int columns);
 
 void main()
 {
+    // Test 1
+    // Size of the original test matrix
     int rows = 3;
     int columns = 4;
 
+    // Allocate memory
     int * array = malloc((rows * columns) * sizeof(int));
 
-
+    // Iterate over the cells and assign a sequencial number
     for (int r = 0; r < rows; r++)
     {
         for (int c = 0; c < columns; c++)
@@ -25,24 +28,28 @@ void main()
         }
     }
 
+    // Display the original matrix
     printf("Transposing the following matrix: \n");
     output_matrix(array, rows, columns);
 
+    // Transpose the matrix
     transpose_matrix(array, rows, columns);
 
+    // Display the modified matrix
     printf("\nResult: \n");
     output_matrix(array, columns, rows);
 
 
-
-
-    srand(time(NULL));
+    // Test 2
+    // Seed random generator
+    srand(time(0));
     rows = 7;
     columns = 3;
 
+    // Allocate memory
     int * array2 = malloc((rows * columns) * sizeof(int));
 
-
+    // Assign each cell a random number
     for (int r = 0; r < rows; r++)
     {
         for (int c = 0; c < columns; c++)
@@ -51,19 +58,24 @@ void main()
         }
     }
 
+    // Display the original matrix
     printf("Transposing the following matrix: \n");
     output_matrix(array2, rows, columns);
 
+    // Transpose the matrix
     transpose_matrix(array2, rows, columns);
 
+    // Display the modified matrix
     printf("\nResult: \n");
     output_matrix(array2, columns, rows);
     
-    
+    // Free manually allocated memory
+    free(array);
     free(array2);
 
 }
 
+// Function for outputting a 2d array or matrix to the screen
 void output_matrix(int * array, int rows, int columns)
 {
     for (int r = 0; r < rows; r++)
@@ -89,7 +101,7 @@ void transpose_matrix(int * array, int rows, int columns)
         }
     }
 
-    // Transpose the rows and columns from the copied array
+    // Transpose the rows and columns from the copied array into the original
     for (int c = 0; c < columns; c++)
     {
         for (int r = 0; r < rows; r++)
@@ -97,8 +109,6 @@ void transpose_matrix(int * array, int rows, int columns)
             *(array + (c * rows + r)) =  *(copy + (r * columns + c));
         }
     }
+    // Free the copied array from memory
     free(copy);
 }
-
-
-

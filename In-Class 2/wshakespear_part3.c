@@ -9,6 +9,8 @@ int sum_all_elements(int * array, int size);
 void main()
 {
     // Test data and sizes of those arrays
+
+    // Test 1
     int a[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
     int a_size = sizeof(a) / sizeof(a[0]);
 
@@ -27,6 +29,8 @@ void main()
 
     printf("The sum is: %4d\n\n", sum_all_elements(a, a_size));
 
+
+    // Test 2
     printf("Testing the sum function for the folowing data\n");
     
     printf("{ ");
@@ -41,7 +45,7 @@ void main()
 
 int sum_all_elements(int * array, int size)
 {
-    // Just calculate the sum with a for loop
+    // Since we know the size just calculate the sum with a for loop
     int sum = 0;
 
     for (int i = 0; i < size; i++)

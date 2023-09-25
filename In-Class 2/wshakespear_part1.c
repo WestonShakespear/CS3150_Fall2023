@@ -9,22 +9,23 @@
 // Function prototypes
 void do_a_thing(int a, int b);
 
-// Global Variables
-static int times_called = 0;
+// Create a static variable
+int times_called = 0;
 
 void main()
 {
-   srand(time(NULL));
-   int times = rand();
+    // Seed random number generator
+    srand(time(0));
+    int times = rand();
 
-   // Run the function a random amount of times
-   printf("Running the function %i times\n", times);
+    // Run the function a random amount of times
+    printf("Running the function %i times\n", times);
+    for (int i = 0; i < times; i++)
+    {
+        do_a_thing(rand(), rand());
+    }
 
-   for (int i = 0; i < times; i++)
-   {
-    do_a_thing(rand(), rand());
-   }
-   printf("The value of times_called is %i\n", times_called);
+    printf("The value of times_called is %i\n", times_called);
 }
 
 void do_a_thing(int a, int b)
