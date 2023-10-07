@@ -1,3 +1,5 @@
+// Lab 1 part 2 written by Weston Shakespear on 8/9/2023
+
 #include <stdio.h>
 
 void swap(int *a, int *b);
@@ -152,8 +154,10 @@ void main()
 //       as input and displaying the swapped values.
 void swap(int *a, int *b)
 {
+    // Put the value that a refers to in c
     int c = *a;
 
+    // Swap the value of b into a and the value of c into b
     *a = *b;
     *b = c;
 }
@@ -166,21 +170,28 @@ void swap(int *a, int *b)
 //     - Display these results in the main function.
 void arrayOp(int array[], int size, int *minimum, int *maximum, int *average)
 {
+    // Initialize the min and max to be that of the integer
     *minimum = __INT_MAX__;
     *maximum = -1 * __INT_MAX__;
 
+    // Loop through the length of the array
     for (int i = 0; i < size; i++)
     {
+        // Hold the sums in the average variable
         *average += array[i];
 
+        // Check if the current value is less than the minimum
         if (array[i] < *minimum)
         {
             *minimum = array[i];
         }
+        // Check if the current value is more than the maximum
         else if (array[i] > *maximum)
         {
             *maximum = array[i];
         }
     }
+
+    // Calculate the average
     *average = *average / size;
 }

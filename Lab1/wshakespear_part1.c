@@ -1,3 +1,5 @@
+// Lab 1 part 1 written by Weston Shakespear on 8/9/2023
+
 #include <stdio.h>
 
 int factorial(int number);
